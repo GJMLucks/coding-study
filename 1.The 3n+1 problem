@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int main() {
+  
+	long UpBound, LowBound, Up, Low, temp;
+	long length, Max_length, cur;
+
+	while (scanf("%ld %ld", &LowBound, &UpBound) == 2){
+
+		Up = UpBound;
+		Low = LowBound;
+
+		if (Up < Low) {
+			temp = Up;
+			Up = Low;
+			Low = temp;
+		}
+
+		Max_length = 0;
+
+		for (int i = Low; i	<= Up; i++){
+			cur = i;
+			length = 1;
+
+			while (cur!=1){
+				length++;
+				
+				if (cur % 2 == 1) {
+					cur = cur * 3 + 1;
+					length++;
+				}
+				cur /= 2;
+			}
+
+			if (Max_length < length) {
+				Max_length = length;
+			}
+		}
+
+		printf("%ld %ld %ld\n", LowBound, UpBound, Max_length);
+	}
+}
