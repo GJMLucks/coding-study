@@ -1,0 +1,56 @@
+#include<iostream>
+#include<stdio.h>
+#include<math.h>
+
+using namespace std;
+
+//variable
+int NumStudent, RemainCent;
+double Cur, Sum, Ava, temp;
+double* budget;
+	
+int main() {
+	//option
+	cout << fixed;
+	cout.precision(2);
+
+	while (scanf("%d", &NumStudent) == 1){
+		if (NumStudent == 0) {break;}
+
+		budget = new double[NumStudent];
+
+		Sum = 0;//reset
+		for (int i = 0; i < NumStudent; i++){
+			cin >> Cur;
+			Sum += Cur;
+			budget[i] = Cur;
+		}
+
+		for (int i = 0; i < NumStudent-1; i++){
+			for (int j = 0; j < NumStudent - 1 - i; j++){
+				if (budget[j] < budget[j + 1]) {
+					temp = budget[j];
+					budget[j] = budget[j + 1];
+					budget[j + 1] = temp;
+				}
+			}
+		}
+
+		Ava = Sum / NumStudent;
+		Ava *= 100;
+		Ava = floor(Ava);
+		Ava /= 100;
+
+		RemainCent = (int)((Sum - Ava*NumStudent) * 100 + 0.5);
+
+		Sum = 0;//reset
+		for (int i = 0; i < RemainCent; i++) {
+			Sum += (budget[i] > Ava + 0.01 ? (budget[i] - Ava - 0.01) : 0);
+		}
+		for (int i = RemainCent; i < NumStudent; i++) {
+			Sum += (budget[i] > Ava ? (budget[i] - Ava) : 0);
+		}
+
+		cout << "$" << Sum << endl;
+	}
+}
