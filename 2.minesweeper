@@ -1,0 +1,70 @@
+#include<stdio.h>
+#include<iostream>
+
+using namespace std;
+
+int main() {
+	//variable
+	int m, n, X, Y;
+	int count = 0;
+	char cur;
+	bool IsMine;
+	int** Matrix;
+
+	//code
+	while (scanf("%d %d", &m, &n) == 2) {
+		if (m*n == 0) {
+			break;
+		}
+
+		if (count) {
+			cout << endl;
+		}
+
+		Matrix = new int*[m];
+		for (int i = 0; i < m; i++) {
+			Matrix[i] = new int[n];
+			for (int j = 0; j < n; j++) {
+				Matrix[i][j] = 0;
+			}
+		}
+
+		getchar();
+		for (int Y = 0; Y < m; Y++) {
+			for (int X = 0; X < n; X++) {
+
+				cur = getchar();
+				if (cur == '*') {
+					Matrix[Y][X] = -1;
+					
+					for (int i = -1; i <= 1; i++) {
+						for (int j = -1; j <= 1; j++) {
+							if (0 <= Y + i && Y + i < m &&
+								0 <= X + j && X + j < n &&
+								Matrix[Y + i][X + j] != -1) {
+
+								Matrix[Y + i][X + j]++;
+							}
+						}
+					}
+				}
+			}
+			cur = getchar();
+		}
+
+		count++;
+		cout << "Field #" << count << ":\n";
+
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				if (Matrix[i][j] == -1) {
+					cout << "*";
+				}
+				else {
+					cout << Matrix[i][j];
+				}
+			}
+			cout << endl;
+		}
+	}
+}
