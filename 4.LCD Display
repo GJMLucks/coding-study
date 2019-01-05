@@ -1,0 +1,199 @@
+#include<iostream>
+
+using namespace std;
+
+#define Max_len 8
+
+long int numbers;
+long int temp;
+int len_of_num;
+int Size;
+bool isRunning = false;
+int numbers_of_index[Max_len];
+int first_index;
+
+int main() {
+	cin >> Size >> numbers;
+	temp = numbers;
+
+	if (numbers != 0)
+	{
+		for (size_t i = Max_len - 1; i >= 0; i--)
+		{
+			if (!numbers) {
+				len_of_num = Max_len - 1 - i;
+				break;
+			}
+			numbers_of_index[i] = (int)(numbers % 10);
+			numbers -= numbers % 10;
+			numbers /= 10;
+		}
+		
+	}
+	else {
+		len_of_num = 1;
+	}
+	numbers = temp;
+
+	first_index = Max_len - len_of_num;
+
+	while (Size+numbers != 0)
+	{
+		for (size_t i = 0; i < len_of_num; i++)
+		{
+			for (size_t j = 0; j < Size+2; j++)
+			{
+				if (j == 0 or j == Size + 1) {
+					cout << " ";
+					continue;
+				}
+				if (numbers_of_index[first_index + i] == 1 or
+					numbers_of_index[first_index + i] == 4) {
+					cout << " ";
+				}
+				else {
+					cout << "-";
+				}
+			}
+			if (i == len_of_num - 1) {
+				cout << endl;
+				break;
+			}
+			cout << " ";
+		}
+
+		for (size_t i = 0; i < Size; i++)
+		{
+			for (size_t j = 0; j < len_of_num; j++)
+			{
+				for (size_t k = 0; k < Size + 2; k++)
+				{
+					if (k == 0 and !(
+						numbers_of_index[first_index + j] == 1 or
+						numbers_of_index[first_index + j] == 2 or
+						numbers_of_index[first_index + j] == 3 or
+						numbers_of_index[first_index + j] == 7)) {
+						cout << "|";
+						continue;
+					}
+					if (k == Size + 1 and !(
+						numbers_of_index[first_index + j] == 5 or
+						numbers_of_index[first_index + j] == 6)) {
+						cout << "|";
+						continue;
+					}
+					cout << " ";
+				}
+				if (j == len_of_num - 1) {
+					cout << endl;
+					break;
+				}
+				cout << " ";
+			}
+		}
+
+		for (size_t i = 0; i < len_of_num; i++)
+		{
+			for (size_t j = 0; j < Size + 2; j++)
+			{
+				if (j == 0 or j == Size + 1) {
+					cout << " ";
+					continue;
+				}
+				if (numbers_of_index[first_index + i] == 1 or
+					numbers_of_index[first_index + i] == 7 or
+					numbers_of_index[first_index + i] == 0) {
+					cout << " ";
+				}
+				else {
+					cout << "-";
+				}
+			}
+			if (i == len_of_num - 1) {
+				cout << endl;
+				break;
+			}
+			cout << " ";
+		}
+
+		for (size_t i = 0; i < Size; i++)
+		{
+			for (size_t j = 0; j < len_of_num; j++)
+			{
+				for (size_t k = 0; k < Size + 2; k++)
+				{
+					if (k == 0 and (
+						numbers_of_index[first_index + j] == 2 or
+						numbers_of_index[first_index + j] == 6 or
+						numbers_of_index[first_index + j] == 8 or
+						numbers_of_index[first_index + j] == 0)) {
+						cout << "|";
+						continue;
+					}
+					if (k == Size + 1 and !(
+						numbers_of_index[first_index + j] == 2)) {
+						cout << "|";
+						continue;
+					}
+					cout << " ";
+				}
+				if (j == len_of_num - 1) {
+					cout << endl;
+					break;
+				}
+				cout << " ";
+			}
+		}
+
+		for (size_t i = 0; i < len_of_num; i++)
+		{
+			for (size_t j = 0; j < Size + 2; j++)
+			{
+				if (j == 0 or j == Size + 1) {
+					cout << " ";
+					continue;
+				}
+				if (numbers_of_index[first_index + i] == 1 or
+					numbers_of_index[first_index + i] == 4 or
+					numbers_of_index[first_index + i] == 7) {
+					cout << " ";
+				}
+				else {
+					cout << "-";
+				}
+			}
+			if (i == len_of_num - 1) {
+				cout << endl;
+				break;
+			}
+			cout << " ";
+		}
+
+		cout << endl;
+
+		cin >> Size >> numbers;
+		temp = numbers;
+
+		if (numbers != 0)
+		{
+			for (size_t i = Max_len - 1; i >= 0; i--)
+			{
+				if (!numbers) {
+					len_of_num = Max_len - 1 - i;
+					break;
+				}
+				numbers_of_index[i] = (int)(numbers % 10);
+				numbers -= numbers % 10;
+				numbers /= 10;
+			}
+
+		}
+		else {
+			len_of_num = 1;
+			numbers_of_index[Max_len - 1] = 0;
+		}
+		numbers = temp;
+
+		first_index = Max_len - len_of_num;
+	}
+}
