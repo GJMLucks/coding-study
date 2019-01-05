@@ -32,7 +32,7 @@ int main() {
 				cur /= 2; // 짝수 2로 나누기
 			}
 
-			if (Max_length < length) { // 최대값 
+			if (Max_length < length) { // 최대값 갱신
 				Max_length = length;
 			}
 		}
