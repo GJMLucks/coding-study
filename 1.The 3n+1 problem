@@ -10,29 +10,29 @@ int main() {
 		Up = UpBound;
 		Low = LowBound;
 
-		if (Up < Low) {
+		if (Up < Low) { // 입력값에 상관없이 Up >= Low 를 유지시키기 위해
 			temp = Up;
 			Up = Low;
 			Low = temp;
 		}
 
-		Max_length = 0;
+		Max_length = 0; // Max_length 초기화
 
-		for (int i = Low; i	<= Up; i++){
+		for (int i = Low; i <= Up; i++){
 			cur = i;
 			length = 1;
 
 			while (cur!=1){
 				length++;
 				
-				if (cur % 2 == 1) {
+				if (cur % 2 == 1) { // 홀수 N에 대해 3N+1은 짝수가 되기에 while문 안의 if문으로 대체가능
 					cur = cur * 3 + 1;
 					length++;
 				}
-				cur /= 2;
+				cur /= 2; // 짝수 2로 나누기
 			}
 
-			if (Max_length < length) {
+			if (Max_length < length) { // 최대값 
 				Max_length = length;
 			}
 		}
