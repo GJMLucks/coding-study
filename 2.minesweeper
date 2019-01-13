@@ -12,7 +12,7 @@ int main() {
 	int** Matrix;
 
 	//code
-	while (scanf("%d %d", &m, &n) == 2) {
+	while (scanf_("%d %d", &m, &n) == 2) {
 		if (m*n == 0) {
 			break;
 		}
