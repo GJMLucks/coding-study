@@ -16,9 +16,12 @@ int main() {
 	char row[MAX_M + 1] // 읽어들이기 편하게 하기위한 배열
 
 	//code
-	while (m || n) { // m, n 둘다 0일때 나가기 위하여
-		
-		if (count) { //처음은 생략
+	while (scanf_("%d %d", &m, &n) == 2) {
+		if (m*n == 0) {
+			break;
+		}
+
+		if (count) {
 			cout << endl;
 		}
 		
